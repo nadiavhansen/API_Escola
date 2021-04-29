@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7aaef3a8-50cf-4e3f-b564-79e03f355ff1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/rotas_alunos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alunos.py" beforeDir="false" afterPath="$PROJECT_DIR$/aluno.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexo_mongo.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexo_mongo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/escola.py" beforeDir="false" afterPath="$PROJECT_DIR$/escola.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/rotas_escola.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aluno.py" beforeDir="false" afterPath="$PROJECT_DIR$/aluno.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotas_alunos.py" beforeDir="false" afterPath="$PROJECT_DIR$/rotas_alunos.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +31,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.rotas_alunos">
+  <component name="RunManager" selected="Python.aluno">
     <configuration name="aluno" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ex_escola" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,10 +139,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.aluno" />
         <item itemvalue="Python.rotas_alunos" />
         <item itemvalue="Python.rotas_escola" />
         <item itemvalue="Python.escola" />
-        <item itemvalue="Python.aluno" />
         <item itemvalue="Python.conexo_mongo" />
       </list>
     </recent_temporary>
