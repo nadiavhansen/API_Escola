@@ -2,21 +2,21 @@
 # Escola:
 # A escola deve ser capaz de criar uma prova, onde cada questão dela tenha um peso exato.
 # A nota da prova deverá ser 10.
-# A soma de todos os pesos não poderá passar de 10 (nota máxima). Caso passe de 10, a prova não deverá ser salva e o
-# usuário deverá ser avisado que há um erro nos pesos.
+# A soma de todos os pesos não poderá ser diferente de 10). Caso seja diferente de 10, a prova não deverá ser salva e
+# o usuário deverá ser avisado que há um erro nos pesos.
 # Nenhuma questão poderá ter peso 0.
 # Os pesos poderão ser números decimais, porém com no máximo 3 casas decimais.
 # Essa prova poderá ter de 1 a 20 questões e todas são de múltipla escolha.
 # Cada prova deverá ser salva com um id (que pode ser gerado pelo banco).
-# Não será possível alterar um prova depois de salva.
+# Não será possível alterar uma prova depois de salva.
 # Deve-se ter em banco todos os alunos que estão matriculados na escola.
 # Apenas alunos que estão matriculados poderão fazer as provas.
 #
 # Rotas Escola:
 # Para acessar cada uma das rotas, a escola deve usar uma chave de acesso.
 # Ter um rota para conseguir listar todos os alunos matriculados.
-# Terá uma rota onde será possível criar a prova. O usuário deverá entrar com um json contendo Nome da prova,
-# número da questão, resposta correta da questão, peso da questão e alternativas da questão.
+# Terá uma rota onde será possível criar a prova. O usuário deverá entrar com um json contendo Nome da prova, número
+# da questão, resposta correta da questão, peso da questão e alternativas da questão.
 # Ex: {
 # 	"Nome":"Ciências - Reprodução humana",
 # 	"1":{
@@ -29,11 +29,12 @@
 # 		"Peso":5}
 # 	}
 # Ter uma rota onde é possível listar todas as provas (Somente mostrar o id e o nome da prova na listagem)
+# Ter uma rota para cadastrar o aluno na escola com seu Nome, data de nascimento (deverá gerar um número de matricula,
+# e esse número deve ser retornado ao aluno após concluir a matricula).
+#
 #
 #
 # Aluno:
-# O aluno deverá conseguir se matricular na escola com seu Nome, data de nascimento (o banco deverá gerar um número
-# de matricula, e esse número deve ser retornado ao aluno após concluir a matricula).
 # O aluno precisa selecionar uma prova para fazer
 # Ao fazer a prova, o aluno poderá "assinalar" somente uma alternativa por questão da prova.
 #
@@ -76,14 +77,36 @@ class Escola:
 def cadastrar_prova():
     raw_request = request.data.decode("utf-8")
     dict_values = json.loads(raw_request)
+
     try:
-        a = Escola()
-        a.cadastrar_prova(dict_values)
-        return "Deu tudo certo!", 200
+        chaves = list(dict_values.keys())
+        soma_pesos = sum([dict_values[key]["Peso"] for key in chaves if key != "Nome"])
+        quantidade_questoes = len([dict_values[key] for key in chaves if key != "Nome"])
+        # pesos = [dict_values[key]["Peso"] for key in chaves if key != "Nome"]
+        # for i in pesos:
+        #     round(i, 3)
+        #     print(round(i, 3))
+
+        # soma_pesos = []
+        # for key in chaves:
+        #     if key != "Nome":
+        #         soma_pesos.append(dict_values[key]["Peso"])
+        # soma_pesos = sum(soma_pesos)
+
+        if quantidade_questoes < 1 or quantidade_questoes > 20:
+            return "Quantidade de questões inválidas! Cadastre no mínimo 1 questão e no máximo 20 questões."
+        elif soma_pesos != 10:
+            return "Nota final da prova diferente de 10! Preste atenção nos pesos!"
+
+        else:
+            a = Escola()
+            a.cadastrar_prova(dict_values)
+            return "Prova cadastrada com sucesso!", 200
 
     except Exception as error:
         return str(error.args)
 
+# @app.rote("")
 
 if __name__ == "__main__":
     app.run(debug=True)
