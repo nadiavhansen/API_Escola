@@ -1,11 +1,10 @@
 from flask import Flask, request
-from escola import *
-from aluno import *
+from escola import Escola
+from aluno import Aluno
 import json
-from conexo_mongo import *
+from conexo_mongo import Mongodb
 import pandas as pd
 from bson.objectid import ObjectId
-
 
 app = Flask(__name__)
 
@@ -50,9 +49,8 @@ def realizar_prova(matricula, id_prova):
 
     try:
         if Aluno().conferir_matricula(matricula):
-            a = Aluno()
-            a.realizar_prova(dict_values)
-            return "Prova realizada com sucesso!", 200
+            # Escola().corrigir_prova(id_prova, dict_values)
+            return Escola().corrigir_prova(id_prova, dict_values), 200
         else:
             return "Matrícula não existe!"
 

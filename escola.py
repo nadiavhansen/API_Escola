@@ -1,69 +1,5 @@
-# Exercício 2
-# Escola:
-# A escola deve ser capaz de criar uma prova, onde cada questão dela tenha um peso exato.
-# A nota da prova deverá ser 10.
-# A soma de todos os pesos não poderá ser diferente de 10). Caso seja diferente de 10, a prova não deverá ser salva e
-# o usuário deverá ser avisado que há um erro nos pesos.
-# Nenhuma questão poderá ter peso 0.
-# Os pesos poderão ser números decimais, porém com no máximo 3 casas decimais.
-# Essa prova poderá ter de 1 a 20 questões e todas são de múltipla escolha.
-# Cada prova deverá ser salva com um id (que pode ser gerado pelo banco).
-# Não será possível alterar uma prova depois de salva.
-# Deve-se ter em banco todos os alunos que estão matriculados na escola.
-# Apenas alunos que estão matriculados poderão fazer as provas.
-#
-# Rotas Escola:
-# Para acessar cada uma das rotas, a escola deve usar uma chave de acesso.
-# Ter um rota para conseguir listar todos os alunos matriculados.
-# Terá uma rota onde será possível criar a prova. O usuário deverá entrar com um json contendo Nome da prova, número
-# da questão, resposta correta da questão, peso da questão e alternativas da questão.
-# Ex: {
-# 	"Nome":"Ciências - Reprodução humana",
-# 	"1":{
-# 		"Alternativas":["A", "B", "C"]
-# 		"Resposta correta":"A",
-# 		"Peso":5},
-# 	"2":{
-# 		"Alternativas":["A", "B", "C"]
-# 		"Resposta correta":"C",
-# 		"Peso":5}
-# 	}
-# Ter uma rota onde é possível listar todas as provas (Somente mostrar o id e o nome da prova na listagem)
-# Ter uma rota para cadastrar o aluno na escola com seu Nome, data de nascimento (deverá gerar um número de matricula,
-# e esse número deve ser retornado ao aluno após concluir a matricula).
-#
-#
-#
-# Aluno:
-# O aluno precisa selecionar uma prova para fazer
-# Ao fazer a prova, o aluno poderá "assinalar" somente uma alternativa por questão da prova.
-#
-# Rotas Aluno:
-# Para acessar qualquer uma das rotas, o aluno deverá usar seu número de matricula.
-# Ter uma rota onde é possível listar todas as provas (Somente mostrar o id e o nome da prova na listagem)
-# Ter uma rota onde o aluno coloque o id da prova e liste todas as questões e alternativas da prova.
-# Ex de retorno:
-# 1 - A, B, C
-# 2 - 1, 2, 3, 4, 5
-# Não será necessário mostrar um enunciado para as questões.
-#
-# Terá uma rota onde o aluno fará a prova. Ele precisa mandar o id da prova desejada, o número da questão e a resposta.
-# Ex: {
-# 	"id":"1234",
-# 	"1":"C",
-# 	"2":"B"
-# 	}
-# Obs: O aluno é obrigado a mandar todas as questões da prova com resposta, mesmo que ela seja nula (string vazia).
-# Caso o aluno não responda alguma das questões, deve retornar um erro.
-# Caso a alternativa de resposta escolhida esteja fora das existentes, deve se considerar que ele errou a resposta.
-# Caso não haja erro no json, a nota do aluno deve ser retornada.
-
-import pymongo
-from flask import Flask, request
-import json
-from conexo_mongo import *
-
-# app = Flask(__name__)
+from conexo_mongo import Mongodb
+from bson.objectid import ObjectId
 
 
 class Escola:
@@ -81,6 +17,44 @@ class Escola:
         alunos = list(a.alunos_matricula.find())
         return alunos
 
+    def chamar_gabarito(self, id_prova):
+        a = Mongodb()
+        prova = a.provas.find_one({"_id": ObjectId(id_prova)}, {"_id": 0})
+        return prova
+
+    def corrigir_prova(self, id_prova, respostas):
+        prova = self.chamar_gabarito(id_prova)
+
+        if not respostas.keys() == prova["Questoes"].keys():
+            return "Questões inválidas! Verifique se esqueceu de responder alguma ou se passou o número errado!"
+
+        nota_final = 0
+        for numero_questao in prova["Questoes"]:
+            if prova["Questoes"][numero_questao]["Resposta correta"].lower() == respostas[numero_questao].lower():
+                nota_final += float(prova["Questoes"][numero_questao]["Peso"])
+
+        return f"Sua nota final é {nota_final}!"
+
+
+
+        # questoes_gabarito, resposta_gabarito = list(gabarito.keys()), list(gabarito.values())
+        # peso_questao = list(peso.values())
+        # questoes_aluno, resposta_aluno = list(respostas.keys()), list(respostas.values())
+        #
+        #
+        # try:
+        #     if len(questoes_gabarito) == len(questoes_aluno):
+        #         for i in resposta_gabarito:
+        #             if resposta_gabarito[i] == resposta_aluno:
+        #                 pass
+        #         print(nota_final)
+        #
+        #         return nota_final
+        #     else:
+        #         return "Prova não finalizada! Verifique se respondeu todas as questões"
+
+        # except Exception as error:
+        #     return str(error.args)
 
 
 # @app.route("/cadastrar_prova/", methods=["POST"])
@@ -120,3 +94,41 @@ class Escola:
 #
 # if __name__ == "__main__":
 #     app.run(debug=True)
+
+
+
+        # print(questoes_gabarito)
+        # print(resposta_gabarito)
+        # print(questoes_aluno)
+        # print(resposta_aluno)
+
+
+    # def chamar_gabarito(self, id_prova):
+    #     a = Mongodb()
+    #
+    #     prova = a.provas.find_one({"_id": ObjectId(id_prova)}, {"_id": 0})
+    #     # gabarito = {}
+    #     # for numero_questao in respostas["Questoes"]:
+    #     #     del respostas['Questoes'][numero_questao]['Alternativas']
+    #     #     del respostas['Questoes'][numero_questao]['Peso']
+    #     #     gabarito[numero_questao] = respostas['Questoes'][numero_questao]['Resposta correta']
+    #
+    #     # return gabarito
+    #     return prova
+    #
+    # # def chamar_peso(self, id_prova):
+    # #     a = Mongodb()
+    # #     repostas = a.provas.find_one({"_id": ObjectId(id_prova)}, {"_id": 0})
+    # #     peso = {}
+    # #     for numero_questao in repostas['Questoes']:
+    # #         del repostas['Questoes'][numero_questao]['Alternativas']
+    # #         del repostas['Questoes'][numero_questao]['Resposta correta']
+    # #         peso[numero_questao] = repostas['Questoes'][numero_questao]['Peso']
+    # #
+    # #     return peso
+
+    # import pymongo
+    # from flask import Flask, request
+    # import json
+    # from conexo_mongo import *
+    # from aluno import *

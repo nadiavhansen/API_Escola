@@ -1,12 +1,20 @@
 from flask import Flask, request
-from escola import *
+from escola import Escola
 import json
-from conexo_mongo import *
+from conexo_mongo import Mongodb
 import pandas as pd
 from random import randint
+import requests
 
 app = Flask(__name__)
 
+# URL_API = "http://127.0.0.1:5000"
+# API_KEY = "essa_e_a_chave"
+# query = "/cadastrar_prova/"
+# params = dict(access_key=API_KEY, query=query, limit=1)
+# response = requests.get(URL_API, params=params)
+# print(response.status_code)
+# print(response.text)
 
 def gerar_matricula():
     matricula = "".join([str(randint(0, 9)) for i in range(12)])
