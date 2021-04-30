@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7aaef3a8-50cf-4e3f-b564-79e03f355ff1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/enunciado.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aluno.py" beforeDir="false" afterPath="$PROJECT_DIR$/aluno.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/escola.py" beforeDir="false" afterPath="$PROJECT_DIR$/escola.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rotas_alunos.py" beforeDir="false" afterPath="$PROJECT_DIR$/rotas/rotas_alunos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rotas_escola.py" beforeDir="false" afterPath="$PROJECT_DIR$/rotas/rotas_escola.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aluno.py" beforeDir="false" afterPath="$PROJECT_DIR$/funcoes/aluno.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/escola.py" beforeDir="false" afterPath="$PROJECT_DIR$/funcoes/escola.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotas/rotas_alunos.py" beforeDir="false" afterPath="$PROJECT_DIR$/rotas/rotas_alunos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotas/rotas_escola.py" beforeDir="false" afterPath="$PROJECT_DIR$/rotas/rotas_escola.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +33,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Serasa\Documents\exercicios-python\ex_escola\funcoes" />
+      <recent name="C:\Users\Serasa\Documents\exercicios-python\ex_escola\rotas" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.rotas_escola (1)">
     <configuration name="aluno" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ex_escola" />
@@ -47,7 +52,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aluno.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Serasa\Documents\exercicios-python\ex_escola\funcoes\aluno.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -68,7 +73,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/escola.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Serasa\Documents\exercicios-python\ex_escola\funcoes\escola.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />

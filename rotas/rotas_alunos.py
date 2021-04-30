@@ -1,10 +1,10 @@
-from flask import Flask, request
-from escola import Escola
-from aluno import Aluno
-import json
-from conexo_mongo import Mongodb
-import pandas as pd
 from bson.objectid import ObjectId
+from funcoes.escola import Escola
+from conexo_mongo import Mongodb
+from flask import Flask, request
+from funcoes.aluno import Aluno
+import pandas as pd
+import json
 
 app = Flask(__name__)
 

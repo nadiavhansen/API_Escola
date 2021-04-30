@@ -1,5 +1,6 @@
-from conexo_mongo import Mongodb
 from bson.objectid import ObjectId
+from conexo_mongo import Mongodb
+from random import randint
 
 
 class Escola:
@@ -7,6 +8,10 @@ class Escola:
     def cadastrar_prova(self, dict_values):
         a = Mongodb()
         a.provas.insert_one(dict_values)
+
+    def gerar_matricula(self):
+        matricula = "".join([str(randint(0, 9)) for i in range(12)])
+        return matricula
 
     def cadastrar_alunos(self, dict_values):
         a = Mongodb()
